@@ -1,8 +1,10 @@
 package org.example.page.controller;
 
 import org.example.page.domain.Message;
+import org.example.page.domain.User;
 import org.example.page.repos.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,11 +31,16 @@ public class MainController {
 	}
 
 	@PostMapping("/main")
-	public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model){
-		Message message = new Message(text, tag);
+	public String add(
+			@AuthenticationPrincipal User user,
+			@RequestParam String text,
+			@RequestParam String tag, Map<String, Object> model
+	){
+		Message message = new Message(text, tag, user);
 
 		messageRepo.save(message);
 		Iterable<Message> messages = messageRepo.findAll();
+
 		model.put("messages", messages);
 
 		return "main";

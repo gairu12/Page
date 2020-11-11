@@ -17,11 +17,19 @@ public class Message {
     private Long id;
 
     private String content;
-
     private String tag;
 
-    public Message(String content, String tag) {
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User author;
+
+    public Message(String content, String tag, User user) {
+        this.author = user;
         this.content = content;
         this.tag = tag;
+    }
+
+    public String getAuthorName() {
+        return author != null ? author.getUsername() : "<none>";
     }
 }
