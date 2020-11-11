@@ -6,12 +6,16 @@ import java.util.Set;
 @Entity
 @Table(name = "usr")
 public class User {
-    @GeneratedValue(strategy = GenerationType.AUTO);
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String username;
-    @Column(name = "pswd")
+
+
     private String password;
+
     private boolean active;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -58,4 +62,5 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
 }
