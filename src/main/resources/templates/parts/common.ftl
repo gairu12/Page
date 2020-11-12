@@ -6,7 +6,7 @@
     <title>Page</title>
 </head>
 <body>
-<#nested
+<#nested>
 </body>
 </html>
 </#macro>
