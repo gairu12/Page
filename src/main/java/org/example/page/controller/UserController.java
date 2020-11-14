@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
 public class UserController {
 
     @Autowired
-    private UserService userService;
-    private UserRepo userRepo;
+    public UserService userService;
+    public UserRepo userRepo;
 
 
     @GetMapping
@@ -57,7 +57,7 @@ public class UserController {
 
 
         for (String key : form.keySet()) {
-            if (roles.contains(key)) {
+            if (roles.contains(key)){
                 user.getRoles().add(Role.valueOf(key));
             }
         }

@@ -22,6 +22,7 @@ public class Message {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private User author;
+    private String fileName;
 
     public Message(String content, String tag, User user) {
         this.author = user;
@@ -31,5 +32,13 @@ public class Message {
 
     public String getAuthorName() {
         return author != null ? author.getUsername() : "<none>";
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }
