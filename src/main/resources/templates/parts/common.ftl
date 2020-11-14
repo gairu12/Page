@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Page</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link href="/static/css/style.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 <#nested>

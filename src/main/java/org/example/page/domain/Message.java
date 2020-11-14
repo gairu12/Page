@@ -33,12 +33,4 @@ public class Message {
     public String getAuthorName() {
         return author != null ? author.getUsername() : "<none>";
     }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
 }
