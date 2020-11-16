@@ -28,7 +28,7 @@
             <strong>${message.authorName}</strong>
             <div>
                 <#if message.fileName??>
-                    <img src="/uploads/${message.fileName!""}">
+                    <img src="/uploads/${message.fileName}">
                 </#if>
             </div>
         </div>

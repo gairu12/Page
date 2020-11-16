@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 @Controller
@@ -28,14 +29,18 @@ public class MainController {
 	private String uploadPath;
 
 	@GetMapping("/")
-	public String greeting(Map<String, Object> model) {
+	public String greeting() {
 		return "greeting";
 	}
+
 	@GetMapping("/main")
-	public String main(@RequestParam(required = false, defaultValue =" ") String filter, Model model) {
+	public String main(
+			@RequestParam(required = false) String filter,
+			Model model
+	) {
 		Iterable<Message> messages;
 
-		if (filter != null) {
+		if (Objects.nonNull(filter)) {
 			messages = messageRepo.findByTag(filter);
 		} else {
 			messages = messageRepo.findAll();
@@ -49,8 +54,9 @@ public class MainController {
 	public String add(
 			@AuthenticationPrincipal User user,
 			@RequestParam String text,
-			@RequestParam String tag, Map<String, Object> model,
-			@RequestParam("file") MultipartFile file
+			@RequestParam String tag,
+			@RequestParam MultipartFile file,
+			Map<String, Object> model
 	) throws IOException {
 		Message message = new Message(text, tag, user);
 		if (!file.isEmpty()){
