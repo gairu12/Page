@@ -5,7 +5,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <form method="get" action="/main" class="form-inline">
-                <input type="text" name="filter" class="form-control" value="${filter?ifExists}" placeholder="Search by tag">
+                <input type="text" name="filter" class="form-control" value="${filter!""?ifExists}" placeholder="Search by tag">
                 <button type="submit" class="btn btn-primary ml-2">Search</button>
             </form>
         </div>
@@ -38,21 +38,22 @@
     </div>
 
     <div class="card-columns">
-        <#list messages as message>
-            <div class="card my-3">
-                <#if message.filename??>
-                    <img src="/img/${message.filename}" class="card-img-top">
-                </#if>
-                <div class="m-2">
-                    <span>${message.content}</span>
-                    <i>${message.tag}</i>
-                </div>
-                <div class="card-footer text-muted">
-                    ${message.authorName}
-                </div>
-            </div>
+    <#list messages as message>
+    <div class="card my-3">
+        <#if message.fileName??>
+            <img src="/uploads/${message.fileName!""}">
+        </#if>
+        <div class="m-2">
+            <span>${message.content}</span>
+            <i>${message.tag}</i>
+        </div>
+        <div class="card-footer text-muted">
+            ${message.authorName}
+        </div>
+    </div>
+    <div>
         <#else>
-            No message
+        No message
         </#list>
     </div>
 </@c.page>
